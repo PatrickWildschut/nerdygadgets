@@ -120,7 +120,7 @@ if (isset($amount)) {
             ?>
             <!--  coderegel 1 van User story: bekijken producten  -->
 
-
+		<a class="ListItem" href='view.php?id=<?php print $row['StockItemID']; ?>'>
 
             <!-- einde coderegel 1 van User story: bekijken producten   -->
                 <div id="ProductFrame">
@@ -147,7 +147,7 @@ if (isset($amount)) {
                 </div>
             <!--  coderegel 2 van User story: bekijken producten  -->
 
-
+		</a>
 
             <!--  einde coderegel 2 van User story: bekijken producten  -->
         <?php } ?>
