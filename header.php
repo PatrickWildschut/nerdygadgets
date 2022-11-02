@@ -25,7 +25,7 @@ $databaseConnection = connectToDatabase();
 <div class="Background">
     <div class="row" id="Header">
         <div class="col-2"><a href="./" id="LogoA">
-                <div id="LogoImage"></div>
+                <div id="LogoImage"><img src="LogoNerdyGadgets.png" width="275px" height="80px"></div>
             </a></div>
         <div class="col-8" id="CategoriesBar">
             <ul id="ul-class">
@@ -50,7 +50,7 @@ $databaseConnection = connectToDatabase();
 
         <ul id="ul-class-navigation">
 
-            <li>
+            <li class="winkelmand">
                 <a href="winkelmand.php" >
                     <img src="winkelmand.png" width="40px" height="40px">
                 </a>
