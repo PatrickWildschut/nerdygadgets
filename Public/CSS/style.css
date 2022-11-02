@@ -35,8 +35,8 @@ a:hover {
 a span {
     display: none;
     position: absolute;
-    color: #676EFF;
-    background: #676EFF;
+    color: #2DB0D4;
+    background: #2DB0D4;
     padding: 5px;
 }
 a:hover span {
@@ -81,7 +81,7 @@ ul#ul-class-navigation li {
     width: 100%;
     height: 200px;
     z-index: 1;
-    border-bottom: 1px solid rgb(36, 41, 143);
+    border-bottom: 1px solid #2DB0D4;/*rgb(36, 41, 143);*/
 }
 #Content {
     margin-top: 200px;
@@ -92,7 +92,7 @@ ul#ul-class-navigation li {
     background-color: rgba(35, 40, 47, 0.8);
     float: left;
     top:216px;
-    border: 1px solid #fff;
+    border: 1px solid #2DB0D4;
     margin-left: 5px;
     margin-top: 10px;
     padding: 20px;
@@ -109,7 +109,7 @@ ul#ul-class-navigation li {
     margin-top: 15px;
     position: relative;
     padding: 1px;
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid #2DB0D4;
 }
 .ImgFrame {
     width: 230px;
@@ -266,7 +266,7 @@ ul#ul-class-price li {
 }
 
 .HrefDecoration i.search {
-    color: #676EFF;
+    color: #2DB0D4;
 }
 
 .HrefDecoration:hover, .HrefDecoration:active {
@@ -283,7 +283,7 @@ ul#ul-class-price li {
     margin-left: 10%;
 }
 .HomePagePrice {
-    color: #676EFF;
+    color: #2DB0D4;
     font-family: vortice-concept, sans-serif;
     font-size: 50px;
     text-transform: uppercase;
@@ -383,7 +383,7 @@ ul#ul-class-price li {
 }
 .StockItemPriceText {
     font-family: vortice-concept, sans-serif;
-    color: #676EFF;
+    color: #2DB0D4;
     font-size: 22px;
     text-transform: uppercase;
     font-weight: bold;
@@ -394,7 +394,7 @@ ul#ul-class-price li {
 }
 .StockItemID {
     font-family: vortice-concept, sans-serif;
-    color: #676EFF;
+    color: #2DB0D4;
     font-size: 10px;
     text-transform: uppercase;
     font-weight: bold;
@@ -467,7 +467,7 @@ ul#ul-class-price li {
     font-size: 18px;
     display: inline;
     font-weight: bold;
-    background-color: rgb(98, 158, 255);
+    background-color: #2DB0D4/*rgb(98, 158, 255)*/;
     padding: 15px 22px;
     border-radius: 50px;
 }
@@ -475,6 +475,6 @@ ul#ul-class-price li {
     padding: 7px 15px;
     border-radius: 39px;
     background: rgb(36, 41, 143);
-    border: 1px rgb(98, 158, 255) solid;
+    border: 1px #2DB0D4/*rgb(98, 158, 255)*/ solid;
     color: #fff;
 }
