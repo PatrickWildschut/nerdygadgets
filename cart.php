@@ -14,10 +14,14 @@ include __DIR__ . "/cartfuncties.php";
 
 <?php
 $cart = getCart();
+$totalPrice = 0;
+
 foreach($cart as $key => $value){
-    print_r(getStockItem($key, $databaseConnection));
-    print(getStockItemImage($key, $databaseConnection));
+    $totalPrice += round(getStockItem($key, $databaseConnection)['SellPrice'], 2) * $value;
+    #print_r(getStockItemImage($key, $databaseConnection));
 }
+
+print($totalPrice);
 //gegevens per artikelen in $cart (naam, prijs, etc.) uit database halen
 //totaal prijs berekenen
 //mooi weergeven in html
