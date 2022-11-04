@@ -51,7 +51,7 @@ $databaseConnection = connectToDatabase();
         <ul id="ul-class-navigation">
 
             <li class="winkelmand">
-                <a href="winkelmand.php" >
+                <a href="cart.php" >
                     <img src="Public/Img/winkelmand.png" width="40px" height="40px">
                 </a>
             </li>
