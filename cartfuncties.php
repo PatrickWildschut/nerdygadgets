@@ -1,5 +1,8 @@
 <?php
-session_start();                                // altijd hiermee starten als je gebruik wilt maken van sessiegegevens
+
+if(session_status()<>PHP_SESSION_ACTIVE)   {
+    session_start();
+}                         // altijd hiermee starten als je gebruik wilt maken van sessiegegevens
 
 function getCart(){
     if(isset($_SESSION['cart'])){               //controleren of winkelmandje (=cart) al bestaat

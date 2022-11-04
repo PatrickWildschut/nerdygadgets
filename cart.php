@@ -1,6 +1,7 @@
 <?php
 include __DIR__ . "/header.php";
 include __DIR__ . "/cartfuncties.php";
+// include __DIR__. "/database.php";
 ?>
 <!DOCTYPE html>
 <html lang="nl">
@@ -13,7 +14,10 @@ include __DIR__ . "/cartfuncties.php";
 
 <?php
 $cart = getCart();
-print_r($cart);
+foreach($cart as $key => $value){
+    print_r(getStockItem($key, $databaseConnection));
+    print(getStockItemImage($key, $databaseConnection));
+}
 //gegevens per artikelen in $cart (naam, prijs, etc.) uit database halen
 //totaal prijs berekenen
 //mooi weergeven in html
