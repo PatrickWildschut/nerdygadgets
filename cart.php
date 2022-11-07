@@ -19,9 +19,18 @@ $totalPrice = 0;
 foreach($cart as $key => $value){
     $totalPrice += round(getStockItem($key, $databaseConnection)['SellPrice'], 2) * $value;
     #print_r(getStockItemImage($key, $databaseConnection));
+    //gegevens van artikel uit database
+    $item = getStockItem($key, $databaseConnection);
+    $naam= $item['StockItemName'];
+    $prijs = round($item['SellPrice'],2);
+
+    print("Naam: $naam<br>");
+    print("Aantal: $value <br>");
+    print("Prijs: $prijs<br>");
+    print("<br>");
 }
 
-print($totalPrice);
+print("<br>Totaal Prijs: $totalPrice<br>");
 //gegevens per artikelen in $cart (naam, prijs, etc.) uit database halen
 //totaal prijs berekenen
 //mooi weergeven in html
