@@ -28,3 +28,14 @@ function addProductToCart($stockItemID){
 
     saveCart($cart);                            // werk de "gedeelde" $_SESSION["cart"] bij met de bijgewerkte cart
 }
+
+function removeProductFromCart($stockItemID){
+    $cart = getCart();                          
+
+    // Alleen verwijderen als het in de cart zit, voor als er een leuke hacker voorbij komt :)
+    if(array_key_exists($stockItemID, $cart)){  
+        unset($cart[$stockItemID]);                   
+    }
+
+    saveCart($cart);                            
+}
