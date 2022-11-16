@@ -4,6 +4,7 @@ html {
 
 body {
     overflow-x:hidden;
+    overflow-y: scroll; /* Thom: verticale scroll bar */
     color: #FFF !important;
     background-color: rgb(35, 35, 47) !important;
 }
@@ -496,3 +497,4 @@ ul#ul-class-price li {
     font-weight: bold;
     z-index: 1;
 }
+
