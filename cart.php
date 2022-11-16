@@ -21,6 +21,12 @@ if(!empty($_POST['verwijder']))
 
     // maak $_POST['verwijder'] empty zodat hij niet blijft verwijderen :)
     $_POST['verwijder'] = '';
+} else if (!empty($_POST['min']))
+{
+    subtractProductFromCart($_POST['artikel']);
+} else if (!empty($_POST['max']))
+{
+    addProductToCart($_POST['artikel']);
 }
 
 $cart = getCart();
@@ -42,10 +48,17 @@ foreach($cart as $key => $value){
     ?>
     <form method="post">
     <img src="Public/StockItemIMG/<?php getStockItemImage($key, $databaseConnection)[0]['ImagePath']; ?> "> <br>
-    <?php
 
-    print("Aantal: $value <br>");
-    print("Prijs: $prijs<br>");
+        <input type="submit" name="min" value="-" style="height:25px; width:100px;font-size: 15px;">
+         <?php
+    print("$value");
+    ?>
+
+        <input type="submit" name="max" value="+" style="height:25px; width:100px;font-size: 15px;">
+
+
+<?php
+    print("<br>Prijs: $prijs<br>");
     ?>
     <p><a href='view.php?id=<?php print($key); ?>'>Naar Artikelpagina</a></p>
 
