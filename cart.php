@@ -75,5 +75,15 @@ print("<br>Totaal Prijs: ".number_format($totalPrice, 2)."<br>");
 //totaal prijs berekenen
 //mooi weergeven in html
 //etc.
+
+#Thom: aanbevolen producten DE BASIS
+print('<br><div class="aanbevolen">Aanbevolen producten:</div><br>');
+print('<div class="a1">img</div>');
+print('<div class="a1">img</div>');
+print('<div class="a1">img</div>');
+print('<div class="a1">img</div>');
+print('<div class="a1">img</div>');
+
 include __DIR__ . "/footer.php";
 ?>
+

@@ -505,3 +505,13 @@ ul#ul-class-price li {
     font-weight: bold;
     z-index: 1;
 }
+
+.aanbevolen { /* */
+    text-align: center;
+    font-size: 25px;
+}
+
+.a1 { /* */
+    float: left;
+    width: 300px;
+}
