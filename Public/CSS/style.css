@@ -4,6 +4,7 @@ html {
 
 body {
     overflow-x:hidden;
+    overflow-y: scroll; /* Thom: verticale scroll */
     color: #FFF !important;
     background-color: rgb(35, 35, 47) !important;
 }
@@ -489,9 +490,17 @@ ul#ul-class-price li {
     z-index: 2;
 }
 
-.popup { /* Thom: p van indicatie winkelmand */
+.popup1 { /* Thom: p van indicatie winkelmand IF aantal producten is 9 of minder */
     color: white;
     margin-left: 5px;
+    margin-top: -2.5px;
+    font-weight: bold;
+    z-index: 1;
+}
+
+.popup2 { /* Thom: p van indicatie winkelmand IF aantal producten is 10 of meer */
+    color: white;
+    margin-left: -0.5px;
     margin-top: -2.5px;
     font-weight: bold;
     z-index: 1;

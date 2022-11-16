@@ -52,12 +52,18 @@ $databaseConnection = connectToDatabase();
         {
             $_SESSION['aantalProducts'] = 0; // $_SESSION voor uitwisseling variabele tussen cart.php en header.php
         }
-        if ($_SESSION['aantalProducts'] >= 1) { // zo ja, indicatie zichtbaar maken
-        ?>
-        <div class="indicatie"> <!-- Printen visuele indicatie -->
-            <p class="popup"><?php print($_SESSION['aantalProducts']);?></p>
-        </div>
-        <?php
+        if ($_SESSION['aantalProducts'] >= 1 && $_SESSION['aantalProducts'] < 10) { // zo ja, indicatie zichtbaar maken
+            ?>
+            <div class="indicatie"> <!-- Printen visuele indicatie -->
+                <p class="popup1"><?php print($_SESSION['aantalProducts']);?></p>
+            </div>
+            <?php
+        } else {
+            ?>
+            <div class="indicatie"> <!-- Printen visuele indicatie -->
+                <p class="popup2"><?php print($_SESSION['aantalProducts']);?></p>
+            </div>
+            <?php
         }
         ?>
 
