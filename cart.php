@@ -70,7 +70,7 @@ foreach($cart as $key => $value){
 
 
 <?php
-    print("<br>Prijs: $prijs<br>");
+    print("<br>Prijs: €$prijs<br>");
     ?>
     <p><a href='view.php?id=<?php print($key); ?>'>Naar Artikelpagina</a></p>
 
@@ -83,7 +83,7 @@ foreach($cart as $key => $value){
     print("<br>");
 }
 
-print("<br>Totaal Prijs: ".number_format($totalPrice, 2)."<br>");
+print("<br>Totaal Prijs: €".number_format($totalPrice, 2)."<br>");
 //gegevens per artikelen in $cart (naam, prijs, etc.) uit database halen
 //totaal prijs berekenen
 //mooi weergeven in html
