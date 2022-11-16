@@ -47,7 +47,10 @@ $databaseConnection = connectToDatabase();
             </ul>
         </div>
 <!-- code voor US3: zoeken -->
-
+        <div class="indicatie">
+            <p class="popup">5</p>
+        </div>
+        
         <ul id="ul-class-navigation">
 
             <li class="winkelmand">

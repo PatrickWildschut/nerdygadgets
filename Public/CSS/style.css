@@ -478,3 +478,21 @@ ul#ul-class-price li {
     border: 1px #2DB0D4/*rgb(98, 158, 255)*/ solid;
     color: #fff;
 }
+
+.indicatie {
+    background-color: red;
+    width: 20px;
+    height: 20px;
+    margin-left: 1150px;
+    margin-top: 80px;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.popup {
+    color: white;
+    margin-left: 5px;
+    margin-top: -2.5px;
+    font-weight: bold;
+    z-index: 1;
+}
