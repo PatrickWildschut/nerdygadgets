@@ -479,7 +479,7 @@ ul#ul-class-price li {
     color: #fff;
 }
 
-.indicatie {
+.indicatie { /* Thom: div van indicatie winkelmand */
     background-color: red;
     width: 20px;
     height: 20px;
@@ -489,7 +489,7 @@ ul#ul-class-price li {
     z-index: 2;
 }
 
-.popup {
+.popup { /* Thom: p van indicatie winkelmand */
     color: white;
     margin-left: 5px;
     margin-top: -2.5px;

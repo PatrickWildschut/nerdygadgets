@@ -47,10 +47,20 @@ $databaseConnection = connectToDatabase();
             </ul>
         </div>
 <!-- code voor US3: zoeken -->
-        <div class="indicatie">
-            <p class="popup">5</p>
+        <?php
+        if (!isset($_SESSION['aantalProducts'])) // Thom: variabele bestaat niet? (!)
+        {
+            $_SESSION['aantalProducts'] = 0; // $_SESSION voor uitwisseling variabele tussen cart.php en header.php
+        }
+        if ($_SESSION['aantalProducts'] >= 1) { // zo ja, indicatie zichtbaar maken
+        ?>
+        <div class="indicatie"> <!-- Printen visuele indicatie -->
+            <p class="popup"><?php print($_SESSION['aantalProducts']);?></p>
         </div>
-        
+        <?php
+        }
+        ?>
+
         <ul id="ul-class-navigation">
 
             <li class="winkelmand">

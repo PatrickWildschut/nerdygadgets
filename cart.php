@@ -25,9 +25,12 @@ if(!empty($_POST['verwijder']))
 
 $cart = getCart();
 $totalPrice = 0;
+$_SESSION['aantalProducts'] = 0; #Thom: variabele waarde
 
 foreach($cart as $key => $value){
     $totalPrice += round(getStockItem($key, $databaseConnection)['SellPrice'], 2) * $value;
+
+    $_SESSION['aantalProducts'] += $value; #Thom: waarde = aantal VERSCHILLENDE producten in winkelmand
 
     //gegevens van artikel uit database
     $item = getStockItem($key, $databaseConnection);
