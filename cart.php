@@ -1,7 +1,7 @@
 <?php
 include __DIR__ . "/header.php";
 include __DIR__ . "/cartfuncties.php";
-// include __DIR__. "/database.php";
+//include __DIR__. "/database.php";
 ?>
 <!DOCTYPE html>
 <html lang="nl">
@@ -33,6 +33,7 @@ $cart = getCart();
 $totalPrice = 0;
 $_SESSION['aantalProducts'] = 0; #Thom: variabele waarde
 
+
 foreach($cart as $key => $value){
     $totalPrice += round(getStockItem($key, $databaseConnection)['SellPrice'], 2) * $value;
 
@@ -42,15 +43,26 @@ foreach($cart as $key => $value){
     $item = getStockItem($key, $databaseConnection);
     $naam= $item['StockItemName'];
     $prijs = number_format($item['SellPrice'], 2);
+    $image = getStockItemImage($key, $databaseConnection);
 
     print("Naam: $naam<br>");
 
+    isset($image);
+    if($image==true){
+    ?>
+        <img src="Public/StockItemIMG/<?php print(getStockItemImage($key, $databaseConnection)[0]['ImagePath']); ?> " width="250" height="250"> <br>
+            <?php
+    }else{
+        ?>
+        <img src="Public/StockGroupIMG/<?php print_r(getStockItem($key, $databaseConnection)['BackupImagePath']); ?> " width="250" height="250"> <br>
+        <?php
+    }
+
     ?>
     <form method="post">
-    <img src="Public/StockItemIMG/<?php getStockItemImage($key, $databaseConnection)[0]['ImagePath']; ?> "> <br>
 
         <input type="submit" name="min" value="-" style="height:25px; width:100px;font-size: 15px;">
-         <?php
+         <?php ;
     print("$value");
     ?>
 
@@ -67,6 +79,7 @@ foreach($cart as $key => $value){
 
     </form>
     <?php
+    print("<br>");
     print("<br>");
 }
 
