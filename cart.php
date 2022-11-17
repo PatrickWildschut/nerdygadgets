@@ -1,7 +1,7 @@
 <?php
 include __DIR__ . "/header.php";
 include __DIR__ . "/cartfuncties.php";
-//include __DIR__. "/database.php";
+// include __DIR__. "/database.php";
 ?>
 <!DOCTYPE html>
 <html lang="nl">
@@ -24,15 +24,16 @@ if(!empty($_POST['verwijder']))
 } else if (!empty($_POST['min']))
 {
     subtractProductFromCart($_POST['artikel']);
+    $_POST['min'] = '';
 } else if (!empty($_POST['max']))
 {
     addProductToCart($_POST['artikel']);
+    $_POST['max'] = '';
 }
 
 $cart = getCart();
 $totalPrice = 0;
 $_SESSION['aantalProducts'] = 0; #Thom: variabele waarde
-
 
 foreach($cart as $key => $value){
     $totalPrice += round(getStockItem($key, $databaseConnection)['SellPrice'], 2) * $value;
@@ -43,26 +44,15 @@ foreach($cart as $key => $value){
     $item = getStockItem($key, $databaseConnection);
     $naam= $item['StockItemName'];
     $prijs = number_format($item['SellPrice'], 2);
-    $image = getStockItemImage($key, $databaseConnection);
 
     print("Naam: $naam<br>");
 
-    isset($image);
-    if($image==true){
-    ?>
-        <img src="Public/StockItemIMG/<?php print(getStockItemImage($key, $databaseConnection)[0]['ImagePath']); ?> " width="250" height="250"> <br>
-            <?php
-    }else{
-        ?>
-        <img src="Public/StockGroupIMG/<?php print_r(getStockItem($key, $databaseConnection)['BackupImagePath']); ?> " width="250" height="250"> <br>
-        <?php
-    }
-
     ?>
     <form method="post">
+    <img src="Public/StockItemIMG/<?php getStockItemImage($key, $databaseConnection)[0]['ImagePath']; ?> "> <br>
 
         <input type="submit" name="min" value="-" style="height:25px; width:100px;font-size: 15px;">
-         <?php ;
+         <?php
     print("$value");
     ?>
 
@@ -70,7 +60,7 @@ foreach($cart as $key => $value){
 
 
 <?php
-    print("<br>Prijs: €$prijs<br>");
+    print("<br>Prijs: $prijs<br>");
     ?>
     <p><a href='view.php?id=<?php print($key); ?>'>Naar Artikelpagina</a></p>
 
@@ -80,23 +70,26 @@ foreach($cart as $key => $value){
     </form>
     <?php
     print("<br>");
-    print("<br>");
 }
 
-print("<br>Totaal Prijs: €".number_format($totalPrice, 2)."<br>");
+
 //gegevens per artikelen in $cart (naam, prijs, etc.) uit database halen
 //totaal prijs berekenen
 //mooi weergeven in html
 //etc.
 
-#Thom: aanbevolen producten DE BASIS
-print('<br><div class="aanbevolen">Aanbevolen producten:</div><br>');
-print('<div class="a1">img</div>');
-print('<div class="a1">img</div>');
-print('<div class="a1">img</div>');
-print('<div class="a1">img</div>');
-print('<div class="a1">img</div>');
+// lege winkelmand //
+
+$telOp = count($cart);
+
+if($telOp == 0) {
+    print("Je winkelmand is leeg...");
+
+} else{
+    print("<br>Totaal Prijs: ".number_format($totalPrice, 2)."<br>");
+}
 
 include __DIR__ . "/footer.php";
-?>
 
+
+?>
