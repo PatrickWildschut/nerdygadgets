@@ -52,3 +52,5 @@ function removeProductFromCart($stockItemID){
 
     saveCart($cart);                            
 }
+
+

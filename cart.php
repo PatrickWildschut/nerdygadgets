@@ -83,11 +83,18 @@ foreach($cart as $key => $value){
 $telOp = count($cart);
 
 if($telOp == 0) {
-    print("Je winkelmand is leeg...");
+   ?>  <h2 class="ninja">je winkelwagen is leeg...<br> <img  class="aikido"src="Public/Img/ninjaaikido.png"> </h2>
 
+
+
+<?php
 } else{
     print("<br>Totaal Prijs: ".number_format($totalPrice, 2)."<br>");
 }
+
+
+
+
 
 include __DIR__ . "/footer.php";
 
