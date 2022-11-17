@@ -44,12 +44,22 @@ foreach($cart as $key => $value){
     $item = getStockItem($key, $databaseConnection);
     $naam= $item['StockItemName'];
     $prijs = number_format($item['SellPrice'], 2);
+    $image = getStockItemImage($key, $databaseConnection);
 
     print("Naam: $naam<br>");
 
+    if($image==true){
+        ?>
+        <img src="Public/StockItemIMG/<?php print(getStockItemImage($key, $databaseConnection)[0]['ImagePath']); ?> " width="250" height="250"> <br>
+        <?php
+    }else{
+        ?>
+        <img src="Public/StockGroupIMG/<?php print_r(getStockItem($key, $databaseConnection)['BackupImagePath']); ?> " width="250" height="250"> <br>
+        <?php
+    }
+
     ?>
     <form method="post">
-    <img src="Public/StockItemIMG/<?php getStockItemImage($key, $databaseConnection)[0]['ImagePath']; ?> "> <br>
 
         <input type="submit" name="min" value="-" style="height:25px; width:100px;font-size: 15px;">
          <?php
