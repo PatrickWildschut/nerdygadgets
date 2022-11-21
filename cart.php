@@ -11,7 +11,6 @@ include __DIR__ . "/cartfuncties.php";
 </head>
 <body>
 <h1>Inhoud Winkelwagen</h1>
-
 <?php
 
 // Verwijder artikels als het nodig is
@@ -100,6 +99,12 @@ if($telOp == 0) {
 <?php
 } else{
     print("<br>Totaal Prijs: ".number_format($totalPrice, 2)."<br>");
+    ?>
+    <form action="buy.php">
+        <input type="submit" name="" value="Afrekenen" style="height:25px; width:200px;font-size: 15px;">
+    </form> 
+
+    <?php
 }
 
 

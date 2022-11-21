@@ -525,9 +525,10 @@ ul#ul-class-price li {
     margin:auto;
     width: 400px;
     height: 400px;
-
-
-
-
-
+}
+.center {
+  margin: auto;
+  width: 50%;
+  border: 1px solid #2DB0D4;
+  padding: 10px;
 }
