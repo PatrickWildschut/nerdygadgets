@@ -34,8 +34,8 @@ function toonKlantenOpHetScherm($klanten) {
 		print("<td>".$klant["ID"]."</td>");
 		print("<td>".$klant["name"]."</td>");
 		print("<td>".$klant["city"]."</td>");
-		print("<td><a href=\"BewerkenKlant.php?nummer=".$klant["nummer"]."\">Bewerk</a></td>");
-		print("<td><a href=\"VerwijderenKlant.php?nummer=".$klant["nummer"]."\">Verwijder</a></td>");
+		print("<td><a href=\"BewerkenKlant.php?id=".$klant["ID"]."\">Bewerk</a></td>");
+		print("<td><a href=\"VerwijderenKlant.php?id=".$klant["ID"]."\">Verwijder</a></td>");
 		print("</tr>");
 	}
 }

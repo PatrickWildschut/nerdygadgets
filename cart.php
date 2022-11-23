@@ -79,6 +79,7 @@ foreach($cart as $key => $value){
     </form>
     <?php
     print("<br>");
+
 }
 
 
@@ -106,6 +107,13 @@ if($telOp == 0) {
 
     <?php
 }
+
+?>
+<form action="bekijkenoverzicht.php">
+        <input type="submit" name="" value="Bekijk Klanten">
+</form>
+
+<?php
 
 
 
