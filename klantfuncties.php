@@ -35,7 +35,15 @@ function toonKlantenOpHetScherm($klanten) {
 		print("<td>".$klant["name"]."</td>");
 		print("<td>".$klant["city"]."</td>");
 		print("<td><a href=\"BewerkenKlant.php?id=".$klant["ID"]."\">Bewerk</a></td>");
-		print("<td><a href=\"VerwijderenKlant.php?id=".$klant["ID"]."\">Verwijder</a></td>");
+		print('<td>');
+		?>
+		<form method="post">
+		<input type="submit" name="verwijder" value="Verwijder" style="height:25px; width:100px;font-size: 15px;">
+    <input type="text" name="id" value="<?php print($klant["ID"]); ?>" hidden>
+</form>
+    	<?php
+
+		print('</td>');
 		print("</tr>");
 	}
 }
@@ -52,14 +60,21 @@ function klantGegevensToevoegen($gegevens) {
 }
 
 function voegKlantToe($connection, $naam, $woonplaats, $adres, $email) {
-	print('miauw1');
     $statement = mysqli_prepare($connection, "INSERT INTO website_customers (name, city, address, email) VALUES(?,?,?,?)");
-    print('miauw2');
     mysqli_stmt_bind_param($statement, 'ssss', $naam, $woonplaats, $adres, $email);
-    print('miauw3');
     mysqli_stmt_execute($statement);
-    print('miauw4');
     return mysqli_stmt_affected_rows($statement) == 1;
+}
+
+function verwijderKlant($id) {
+	$connection = maakVerbinding();
+
+    $statement = mysqli_prepare($connection, "DELETE FROM website_customers WHERE ID = ?");
+
+    mysqli_stmt_bind_param($statement, 'i', $id);
+    mysqli_stmt_execute($statement);
+
+    sluitVerbinding($connection);
 }
 
 ?>

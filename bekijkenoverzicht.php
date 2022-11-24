@@ -1,6 +1,18 @@
 <?php 
 include __DIR__ . "/header.php";
 include __DIR__ . '/klantfuncties.php';
+
+// Verwijder
+if(!empty($_POST['verwijder']))
+{
+    // werkt niet :)
+
+    verwijderKlant($_POST['id']);
+
+    // Maak verwijder weer leeg
+    $_POST['verwijder'] = '';
+}
+
 $klanten = alleKlantenOpvragen();
 ?>
 
@@ -23,5 +35,3 @@ $klanten = alleKlantenOpvragen();
 <?php
 include __DIR__ . "/footer.php";
 ?>
-
-CREATE TABLE `website_customers` (\n  `ID` int(11) NOT NULL AUTO_INCREMENT,\n  `name` varchar(100) NOT NULL,\n  `city` varchar(100) NOT NULL,\n  `address` varchar(100) NOT NULL,\n  `email` varchar(100) NOT NULL,\n  PRIMARY KEY (`ID`)\n) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1'
