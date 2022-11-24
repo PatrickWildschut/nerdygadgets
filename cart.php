@@ -72,7 +72,7 @@ foreach($cart as $key => $value){
 
         <input type="submit" name="min" value="-" style="height:25px; width:100px;font-size: 15px;">
 
-        <input name="aantal" type="number"value="<?php print("$value"); ?>"style="height:25px; width:100px;font-size: 15px;">
+        <input name="aantal" min="1" type="number"value="<?php print("$value"); ?>"style="height:25px; width:100px;font-size: 15px;">
         <input type="submit" name="max" value="+" style="height:25px; width:100px;font-size: 15px;">
 
 
