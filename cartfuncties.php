@@ -53,4 +53,15 @@ function removeProductFromCart($stockItemID){
     saveCart($cart);                            
 }
 
+function updateProductFromCart($stockItemID,$aantal){
+    $cart = getCart();
+    if(array_key_exists($stockItemID,$cart)) {
+        $cart[$stockItemID] = $aantal;
+    }
+
+    saveCart($cart);
+
+
+
+}
 

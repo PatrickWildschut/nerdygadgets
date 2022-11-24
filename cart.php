@@ -13,26 +13,36 @@ include __DIR__ . "/cartfuncties.php";
 <h1>Inhoud Winkelwagen</h1>
 <?php
 
-// Verwijder artikels als het nodig is
-if(!empty($_POST['verwijder']))
-{
-    removeProductFromCart($_POST['artikel']);
-
-    // maak $_POST['verwijder'] empty zodat hij niet blijft verwijderen :)
-    $_POST['verwijder'] = '';
-} else if (!empty($_POST['min']))
-{
-    subtractProductFromCart($_POST['artikel']);
-    $_POST['min'] = '';
-} else if (!empty($_POST['max']))
-{
-    addProductToCart($_POST['artikel']);
-    $_POST['max'] = '';
-}
-
 $cart = getCart();
 $totalPrice = 0;
 $_SESSION['aantalProducts'] = 0; #Thom: variabele waarde
+
+if(isset($_POST['aantal']))
+{
+// Verwijder artikels als het nodig is
+    if(!empty($_POST['verwijder']))
+    {
+        removeProductFromCart($_POST['artikel']);
+
+        // maak $_POST['verwijder'] empty zodat hij niet blijft verwijderen :)
+        $_POST['verwijder'] = '';
+    } else if ($_POST['aantal'] != $cart[$_POST["artikel"]])
+    {
+        updateProductFromCart($_POST['artikel'],$_POST['aantal']);
+
+    } else if (!empty($_POST['max']))
+    {
+        addProductToCart($_POST['artikel']);
+        $_POST['max'] = '';
+    }  else if (!empty($_POST['min']))
+    {
+        subtractProductFromCart($_POST['artikel']);
+        $_POST['min'] = '';
+    }
+
+}
+
+$cart = getCart();
 
 foreach($cart as $key => $value){
     $totalPrice += round(getStockItem($key, $databaseConnection)['SellPrice'], 2) * $value;
@@ -61,10 +71,8 @@ foreach($cart as $key => $value){
     <form method="post">
 
         <input type="submit" name="min" value="-" style="height:25px; width:100px;font-size: 15px;">
-         <?php
-    print("$value");
-    ?>
 
+        <input name="aantal" type="number"value="<?php print("$value"); ?>"style="height:25px; width:100px;font-size: 15px;">
         <input type="submit" name="max" value="+" style="height:25px; width:100px;font-size: 15px;">
 
 
@@ -122,4 +130,4 @@ if($telOp == 0) {
 include __DIR__ . "/footer.php";
 
 
-?>
+?> jvbhu9
