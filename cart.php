@@ -76,8 +76,13 @@ foreach($cart as $key => $value){
         <input type="submit" name="max" value="+" style="height:25px; width:100px;font-size: 15px;">
 
 
+
 <?php
-    print("<br>Prijs: $prijs<br>");
+    print("<br>Prijs incl. 21% btw:€ $prijs<br>");
+    $btw = 0.21 * $prijs;
+    $btw = number_format($btw,2);
+    print("btw:€ $btw<br>");
+
     ?>
     <p><a href='view.php?id=<?php print($key); ?>'>Naar Artikelpagina</a></p>
 
@@ -107,12 +112,14 @@ if($telOp == 0) {
 
 <?php
 } else{
-    print("<br>Totaal Prijs: ".number_format($totalPrice, 2)."<br>");
+    print("<br>Totaal Prijs:€ ".number_format($totalPrice, 2)."<br>");
     ?>
+        <br>
     <form action="buy.php">
         <input type="submit" name="" value="Afrekenen" style="height:25px; width:200px;font-size: 15px;">
     </form> 
-
+<br>
+    <br>
     <?php
 }
 
