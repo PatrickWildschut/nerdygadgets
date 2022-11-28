@@ -2,6 +2,7 @@
 include __DIR__ . "/header.php";
 
 include 'klantfuncties.php';
+// Patrick
 if (isset($_GET["afrekenen"])) {
     $gegevens["name"] = isset($_GET["name"]) ? $_GET["name"] : "";
     $gegevens["city"] = isset($_GET["city"]) ? $_GET["city"] : "";
@@ -10,6 +11,16 @@ if (isset($_GET["afrekenen"])) {
     
     $gegevens["email"] = isset($_GET["email"]) ? $_GET["email"] : "";
     $gegevens = klantGegevensToevoegen($gegevens);
+
+    ?>
+    <!-- Ideal popup site, kan misschien geblokt worden - Patrick -->
+    <script type="text/javascript">
+    	window.onload = function()
+    	{
+        	window.open('https://www.ideal.nl/demo/qr/', "_blank");
+    	}
+	</script>
+	<?php
 }
 
 ?>

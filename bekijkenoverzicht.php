@@ -5,8 +5,6 @@ include __DIR__ . '/klantfuncties.php';
 // Verwijder
 if(!empty($_POST['verwijder']))
 {
-    // werkt niet :)
-
     verwijderKlant($_POST['id']);
 
     // Maak verwijder weer leeg

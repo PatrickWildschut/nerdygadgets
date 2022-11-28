@@ -62,10 +62,29 @@ function klantGegevensToevoegen($gegevens) {
 }
 
 function voegKlantToe($connection, $naam, $woonplaats, $adres, $email) {
-    $statement = mysqli_prepare($connection, "INSERT INTO website_customers (name, city, address, email) VALUES(?,?,?,?)");
-    mysqli_stmt_bind_param($statement, 'ssss', $naam, $woonplaats, $adres, $email);
-    mysqli_stmt_execute($statement);
-    return mysqli_stmt_affected_rows($statement) == 1;
+
+	$result = selecteerKlanten($connection);
+	$bestaat = false;
+	foreach ($result as $key => $value) {
+		print($value['name'].$naam);
+		if($value['name'] == $naam)
+		{
+			
+			$bestaat = true;
+		}
+	}
+
+    // geen result, dus bestaat niet
+    if(!$bestaat)
+    {
+    	$statement = mysqli_prepare($connection, "INSERT INTO website_customers (name, city, address, email) VALUES(?,?,?,?)");
+	    mysqli_stmt_bind_param($statement, 'ssss', $naam, $woonplaats, $adres, $email);
+	    mysqli_stmt_execute($statement);
+    } else{
+    	// klant bestaat al, hoeft niet toegevoegd te worden.
+    }
+
+    return true;
 }
 
 function verwijderKlant($id) {
