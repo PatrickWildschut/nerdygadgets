@@ -43,6 +43,7 @@ if(isset($_POST['aantal']))
 }
 
 $cart = getCart();
+$_SESSION['totaalprijs'] = 0;
 
 foreach($cart as $key => $value){
     $totalPrice += round(getStockItem($key, $databaseConnection)['SellPrice'], 2) * $value;
@@ -53,6 +54,7 @@ foreach($cart as $key => $value){
     $item = getStockItem($key, $databaseConnection);
     $naam= $item['StockItemName'];
     $prijs = number_format($item['SellPrice'], 2);
+    $_SESSION['totaalprijs'] += $prijs * $value;
     $image = getStockItemImage($key, $databaseConnection);
 
     print("Naam: $naam<br>");
@@ -78,10 +80,7 @@ foreach($cart as $key => $value){
 
 
 <?php
-    print("<br>Prijs incl. 21% btw:€ $prijs<br>");
-    $btw = 0.21 * $prijs;
-    $btw = number_format($btw,2);
-    print("btw:€ $btw<br>");
+    print("<br>Prijs (incl. 21% btw):€ ".$prijs * $value."<br>");
 
     ?>
     <p><a href='view.php?id=<?php print($key); ?>'>Naar Artikelpagina</a></p>
@@ -112,7 +111,11 @@ if($telOp == 0) {
 
 <?php
 } else{
-    print("<br>Totaal Prijs:€ ".number_format($totalPrice, 2)."<br>");
+    $btw = 0.21 * $_SESSION['totaalprijs'];
+    $btw = number_format($btw,2);
+    print("BTW: € $btw");
+
+    print("<br>Totaal prijs: € ".$_SESSION['totaalprijs']."<br>");
     ?>
         <br>
     <form action="buy.php">

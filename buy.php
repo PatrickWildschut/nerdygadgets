@@ -1,27 +1,51 @@
 <?php
 include __DIR__ . "/header.php";
+
+include 'klantfuncties.php';
+if (isset($_GET["afrekenen"])) {
+    $gegevens["name"] = isset($_GET["name"]) ? $_GET["name"] : "";
+    $gegevens["city"] = isset($_GET["city"]) ? $_GET["city"] : "";
+    
+    $gegevens["address"] = isset($_GET["address"]) ? $_GET["address"] : "";
+    
+    $gegevens["email"] = isset($_GET["email"]) ? $_GET["email"] : "";
+    $gegevens = klantGegevensToevoegen($gegevens);
+}
+
 ?>
 
 <div class="center">
-<form>
-	Naam: <input type="text" name="naam" required>
-	Adres: <input type="text" name="adres" required>
-	Plaats: <input type="text" name="plaats" required>
-	Email: <input type="text" name="email" required> <br> <br>
+<form method="get">
+        <label>Naam</label>
+        <input type="text" name="name" value="<?php print($gegevens['name']); ?>" required/> <br>
+        <label>Woonplaats</label>
+        <input type="text" name="city" value="<?php print($gegevens['city']); ?>" required/> <br>
+        <label>Adres</label>
+        <input type="text" name="address" value="<?php print($gegevens['address']); ?>" required/> <br>
+        <label>Email</label>
+        <input type="text" name="email" value="<?php print($gegevens['email']); ?>" required/> <br>
 
-	<div class="center" style="border: none;">
-	<select name="betaalwijze">
-  		<option value="rabobank">Rabobank</option>
-  		<option value="ing">ING</option>
-  		<option value="abnamro">ABN Amro</option>
-  		<option value="asnbank">ASN Bank</option>
-	</select>
-	</div>
+        <div class="center" style="border: none;">
+		<select name="betaalwijze">
+	  		<option value="rabobank">Rabobank</option>
+	  		<option value="ing">ING</option>
+	  		<option value="abnamro">ABN Amro</option>
+	  		<option value="asnbank">ASN Bank</option>
+		</select>
+		</div>
 
-	<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d155984.57352126975!2d5.46216585!3d52.347588349999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c63a4fa67cac6b%3A0xef03e8338facf090!2sZeewolde!5e0!3m2!1snl!2snl!4v1669198330061!5m2!1snl!2snl" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+		<?php
+		$btw = 0.21 * $_SESSION['totaalprijs'];
+		$btw = number_format($btw,2);
+		print("BTW: € $btw");
 
-	<input type="submit" name="" value="Afrekenen">
-</form>
+		print("<br>Totaal prijs: € ".$_SESSION['totaalprijs']."<br>");
+	    
+		?>
+
+        <input type="submit" name="afrekenen" value="Afrekenen" required/>
+        
+    </form>
 </div>
 <?php
 include __DIR__ . "/footer.php";
