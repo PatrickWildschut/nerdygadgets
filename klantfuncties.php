@@ -4,6 +4,8 @@ $gegevens = array("ID" => 0, "name" => "", "city" => "", "address" => "", "email
 
 function maakVerbinding() {
     $host = 'localhost';
+    #$user = 'klant';
+    #$pass = 'dikkeklantjong';
     $user = 'root';
     $pass = '';
     $databasename = "nerdygadgets";
