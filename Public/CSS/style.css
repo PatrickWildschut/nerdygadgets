@@ -561,3 +561,7 @@ ul#ul-class-price li {
     margin-top: -138px;
 }
 
+.titels {
+    padding-bottom: 5px;
+    border-bottom: 2px solid #2DB0D4;
+}
