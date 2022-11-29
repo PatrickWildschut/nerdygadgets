@@ -28,11 +28,11 @@ if (isset($_GET["afrekenen"])) {
     <h1 class="titels">Verzendinformatie</h1>
 
         <form>
-            Naam: <input type="text" name="naam" value="<?php print($gegevens['name']); ?>" required>
-            Adres: <input type="text" name="adres" value="<?php print($gegevens['address']); ?>" required>
-            Postcode: <input type="text" name="postcode" value="<?php print($gegevens['postcode']); ?>" required/>
-            Plaats: <input type="text" name="plaats" value="<?php print($gegevens['city']); ?>" required>
-            Email: <input type="text" name="email" value="<?php print($gegevens['email']); ?>" required>
+            Naam: <input class="text" type="text" name="naam" value="<?php print($gegevens['name']); ?>" required>
+            Adres: <input class="text" type="text" name="adres" value="<?php print($gegevens['address']); ?>" required>
+            Postcode: <input class="text" type="text" name="postcode" value="<?php print($gegevens['postcode']); ?>" required/>
+            Plaats: <input class="text" type="text" name="plaats" value="<?php print($gegevens['city']); ?>" required>
+            Email: <input class="text" type="text" name="email" value="<?php print($gegevens['email']); ?>" required>
         </form></div>
 
     <div class="verzendmethode">
@@ -52,7 +52,7 @@ if (isset($_GET["afrekenen"])) {
 		</div>
 
     <div class="afrekenen">
-    <h1 class="titels">Controleer uw bestelling</h1>
+    <h1 class="titels">Bevestigen</h1>
 		<?php
 		$btw = 0.21 * $_SESSION['totaalprijs'];
 		$btw = number_format($btw,2);
