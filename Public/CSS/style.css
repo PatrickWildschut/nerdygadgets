@@ -526,9 +526,38 @@ ul#ul-class-price li {
     width: 400px;
     height: 400px;
 }
-.center {
-  margin: auto;
-  width: 50%;
-  border: 1px solid #2DB0D4;
-  padding: 10px;
+
+
+.verzendinformatie {
+    float: left;
+    width: 40%;
+    margin: 10px;
+    border: 1px solid #2DB0D4;
+    padding: 10px;
+    clear:left;
 }
+.verzendmethode {
+    float: left;
+    width: 30%;
+    margin: 10px;
+    border: 1px solid #2DB0D4;
+    padding: 10px;
+    clear:center;
+}
+.betaalmethode {
+    float: left;
+    width: 30%;
+    margin: 10px;
+    border: 1px solid #2DB0D4;
+    padding: 10px;
+}
+
+.afrekenen {
+    float: right;
+    width: 26%;
+    margin: 10px;
+    border: 1px solid #2DB0D4;
+    padding: 10px;
+    margin-top: -138px;
+}
+

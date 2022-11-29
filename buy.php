@@ -24,21 +24,25 @@ if (isset($_GET["afrekenen"])) {
 }
 
 ?>
+    <div class="verzendinformatie">
+    <h1 class="titels">Verzendinformatie</h1>
 
-<div class="center">
-<form method="get">
-        <label>Naam</label>
-        <input type="text" name="name" value="<?php print($gegevens['name']); ?>" required/> <br>
-        <label>Adres</label>
-        <input type="text" name="address" value="<?php print($gegevens['address']); ?>" required/> <br>
-        <label>Postcode</label>
-        <input type="text" name="postcode" value="<?php print($gegevens['postcode']); ?>" required/> <br>
-        <label>Woonplaats</label>
-        <input type="text" name="city" value="<?php print($gegevens['city']); ?>" required/> <br>
-        <label>Email</label>
-        <input type="email" name="email" value="<?php print($gegevens['email']); ?>" required/> <br>
+        <form>
+            Naam: <input type="text" name="naam" value="<?php print($gegevens['name']); ?>" required>
+            Adres: <input type="text" name="adres" value="<?php print($gegevens['address']); ?>" required>
+            Postcode: <input type="text" name="postcode" value="<?php print($gegevens['postcode']); ?>" required/>
+            Plaats: <input type="text" name="plaats" value="<?php print($gegevens['city']); ?>" required>
+            Email: <input type="text" name="email" value="<?php print($gegevens['email']); ?>" required>
+        </form></div>
 
-        <div class="center" style="border: none;">
+    <div class="verzendmethode">
+    <h1 class="titels">Verzendmethode</h1>
+        <select name="verzendmethode">
+            <option value="PostNL">Verzenden met PostNL</option>
+        </select></div>
+
+    <div class="betaalmethode">
+    <h1 class="titels">Betaalmethode</h1>
 		<select name="betaalwijze">
 	  		<option value="rabobank">Rabobank</option>
 	  		<option value="ing">ING</option>
@@ -47,6 +51,8 @@ if (isset($_GET["afrekenen"])) {
 		</select>
 		</div>
 
+    <div class="afrekenen">
+    <h1 class="titels">Controleer uw bestelling</h1>
 		<?php
 		$btw = 0.21 * $_SESSION['totaalprijs'];
 		$btw = number_format($btw,2);
@@ -56,8 +62,8 @@ if (isset($_GET["afrekenen"])) {
 	    
 		?>
 
-        <input type="submit" name="afrekenen" value="Afrekenen" required/>
-        
+    <input class="afreken" type="submit" name="afrekenen" value="Afrekenen" required/>
+    </div>
     </form>
 </div>
 <?php
