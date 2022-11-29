@@ -1,6 +1,6 @@
 <?php
 
-$gegevens = array("ID" => 0, "name" => "", "city" => "", "address" => "", "email" => "", "melding" => "");
+$gegevens = array("ID" => 0, "name" => "", "city" => "", "address" => "","postcode" => "", "email" => "", "melding" => "");
 
 function maakVerbinding() {
     $host = 'localhost';
@@ -51,8 +51,9 @@ function toonKlantenOpHetScherm($klanten) {
 }
 
 function klantGegevensToevoegen($gegevens) {
+
 	$connection = maakVerbinding();
-	if (voegKlantToe($connection, $gegevens['name'], $gegevens["city"], $gegevens["address"], $gegevens["email"]) == True) {
+	if (voegKlantToe($connection, $gegevens['name'], $gegevens["address"], $gegevens["postcode"], $gegevens["city"], $gegevens["email"]) == True) {
 		$gegevens["melding"] = "De klant is toegevoegd";
         } else {
 	 	$gegevens["melding"] = "Het toevoegen is mislukt";
@@ -61,25 +62,28 @@ function klantGegevensToevoegen($gegevens) {
 	return $gegevens;
 }
 
-function voegKlantToe($connection, $naam, $woonplaats, $adres, $email) {
+function voegKlantToe($connection, $naam, $adres, $postcode, $woonplaats, $email) {
 
 	$result = selecteerKlanten($connection);
 	$bestaat = false;
 	foreach ($result as $key => $value) {
-		print($value['name'].$naam);
 		if($value['name'] == $naam)
 		{
-			
 			$bestaat = true;
+			break;
 		}
 	}
 
     // geen result, dus bestaat niet
     if(!$bestaat)
     {
-    	$statement = mysqli_prepare($connection, "INSERT INTO website_customers (name, city, address, email) VALUES(?,?,?,?)");
-	    mysqli_stmt_bind_param($statement, 'ssss', $naam, $woonplaats, $adres, $email);
+    	print("miauw1");
+    	$statement = mysqli_prepare($connection, "INSERT INTO website_customers(name, address, postcode, city, email) VALUES(?,?,?,?,?)");
+    	print("miauw2");
+	    mysqli_stmt_bind_param($statement, 'sssss', $naam, $adres, $postcode, $woonplaats, $email);
+	    print("miauw3");
 	    mysqli_stmt_execute($statement);
+	    print("miauw4");
     } else{
     	// klant bestaat al, hoeft niet toegevoegd te worden.
     }
