@@ -60,8 +60,5 @@ function updateProductFromCart($stockItemID,$aantal){
     }
 
     saveCart($cart);
-
-
-
 }
 

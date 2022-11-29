@@ -17,7 +17,7 @@ if (isset($_GET["afrekenen"])) {
     <script type="text/javascript">
     	window.onload = function()
     	{
-        	window.open('https://www.ideal.nl/demo/qr/', "_blank");
+        	window.open('https://www.ideal.nl/demo/qr?app=<?php print($_GET["betaalwijze"]); ?>', "_blank");
     	}
 	</script>
 	<?php
@@ -36,14 +36,14 @@ if (isset($_GET["afrekenen"])) {
         <label>Woonplaats</label>
         <input type="text" name="city" value="<?php print($gegevens['city']); ?>" required/> <br>
         <label>Email</label>
-        <input type="text" name="email" value="<?php print($gegevens['email']); ?>" required/> <br>
+        <input type="email" name="email" value="<?php print($gegevens['email']); ?>" required/> <br>
 
         <div class="center" style="border: none;">
 		<select name="betaalwijze">
 	  		<option value="rabobank">Rabobank</option>
 	  		<option value="ing">ING</option>
-	  		<option value="abnamro">ABN Amro</option>
-	  		<option value="asnbank">ASN Bank</option>
+	  		<option value="abn">ABN Amro</option>
+	  		<option value="knab">Knab</option>
 		</select>
 		</div>
 
