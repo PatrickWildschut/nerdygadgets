@@ -1,28 +1,28 @@
 <!-- dit bestand bevat alle code voor de pagina die één product laat zien -->
 <?php
-include __DIR__ . "/header.php";
 include __DIR__ . "/cartfuncties.php";
+
+//?id=1 handmatig meegeven via de URL (gebeurt normaal gesproken als je via overzicht op artikelpagina terechtkomt)
+    if (isset($_GET["id"])) {
+        $stockItemID = $_GET["id"];
+}   else {
+        $stockItemID = 0;
+}
+
+if (isset($_POST["submit"])) {              // zelfafhandelend formulier
+        $stockItemID = $_POST["stockItemID"];
+        addProductToCart($stockItemID);         
+        getProductCount();
+        print("Product toegevoegd aan <a href='cart.php'> winkelmandje!</a>");
+}
+
+include __DIR__ . "/header.php";
+
 
 $StockItem = getStockItem($_GET['id'], $databaseConnection);
 $StockItemImage = getStockItemImage($_GET['id'], $databaseConnection);
 ?>
 
-<?php
-    //?id=1 handmatig meegeven via de URL (gebeurt normaal gesproken als je via overzicht op artikelpagina terechtkomt)
-    if (isset($_GET["id"])) {
-        $stockItemID = $_GET["id"];
-    } else {
-        $stockItemID = 0;
-    }
-?>
-
-<?php
-    if (isset($_POST["submit"])) {              // zelfafhandelend formulier
-        $stockItemID = $_POST["stockItemID"];
-        addProductToCart($stockItemID);         // maak gebruik van geïmporteerde functie uit cartfuncties.php
-        print("Product toegevoegd aan <a href='cart.php'> winkelmandje!</a>");
-    }
-?>
 <div id="CenteredContent">
     <?php
     if ($StockItem != null) {
@@ -101,7 +101,7 @@ $StockItemImage = getStockItemImage($_GET['id'], $databaseConnection);
                         <p class="StockItemPriceText"><b><?php print sprintf("€ %.2f", $StockItem['SellPrice']); ?></b></p>
                         <h6> Inclusief BTW </h6> <br>
                         <form method="post">
-                            <input type="number" name="stockItemID" value="<?php print($stockItemID) ?>" hidden>
+                            <input type="number" name="stockItemID" value="<?php print $StockItem["StockItemID"]; ?>" hidden>
                             <input type="submit" name="submit" value="Add to cart">
                         </form> 
                     </div>

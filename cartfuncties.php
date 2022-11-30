@@ -28,7 +28,7 @@ function addProductToCart($stockItemID){
 
     saveCart($cart);                            // werk de "gedeelde" $_SESSION["cart"] bij met de bijgewerkte cart
 }
-
+// Patrick
 function subtractProductFromCart($stockItemID){
     $cart = getCart();
 
@@ -41,7 +41,7 @@ function subtractProductFromCart($stockItemID){
         }
     }
 }
-
+// Patrick
 function removeProductFromCart($stockItemID){
     $cart = getCart();                          
 
@@ -52,7 +52,7 @@ function removeProductFromCart($stockItemID){
 
     saveCart($cart);                            
 }
-
+// Uzejir
 function updateProductFromCart($stockItemID,$aantal){
     $cart = getCart();
     if(array_key_exists($stockItemID,$cart)) {
@@ -60,5 +60,19 @@ function updateProductFromCart($stockItemID,$aantal){
     }
 
     saveCart($cart);
+}
+
+// Patrick
+function getProductCount()
+{
+    $cart = getCart();
+    $_SESSION['aantalProducts']  = 0;
+
+    foreach ($cart as $key => $value) {
+        // We setten de globale variabele
+        $_SESSION['aantalProducts'] += $value;
+    }
+    // en returnen dezelfde waarde zodat we kunnen kiezen hoe we het willen gebruiken :)
+    return $_SESSION['aantalProducts'];
 }
 

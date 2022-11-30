@@ -28,12 +28,12 @@ if (isset($_GET["afrekenen"])) {
     <h1 class="titels">Verzendinformatie</h1>
 
         <form>
-            Naam: <input class="text" type="text" name="naam" value="<?php print($gegevens['name']); ?>" required>
-            Adres: <input class="text" type="text" name="adres" value="<?php print($gegevens['address']); ?>" required>
+            Naam: <input class="text" type="text" name="name" value="<?php print($gegevens['name']); ?>" required>
+            Adres: <input class="text" type="text" name="address" value="<?php print($gegevens['address']); ?>" required>
             Postcode: <input class="text" type="text" name="postcode" value="<?php print($gegevens['postcode']); ?>" required/>
-            Plaats: <input class="text" type="text" name="plaats" value="<?php print($gegevens['city']); ?>" required>
-            Email: <input class="text" type="text" name="email" value="<?php print($gegevens['email']); ?>" required>
-        </form></div>
+            Plaats: <input class="text" type="text" name="city" value="<?php print($gegevens['city']); ?>" required>
+            Email: <input class="text" type="email" name="email" value="<?php print($gegevens['email']); ?>" required>
+       </div>
 
     <div class="verzendmethode">
     <h1 class="titels">Verzendmethode</h1>

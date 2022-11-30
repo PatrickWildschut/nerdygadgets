@@ -1,21 +1,12 @@
 <?php
-include __DIR__ . "/header.php";
 include __DIR__ . "/cartfuncties.php";
 // include __DIR__. "/database.php";
 ?>
-<!DOCTYPE html>
-<html lang="nl">
-<head>
-    <meta charset="UTF-8">
-    <title>Winkelwagen</title>
-</head>
-<body>
-<h1>Inhoud Winkelwagen</h1>
+
 <?php
 
 $cart = getCart();
 $totalPrice = 0;
-$_SESSION['aantalProducts'] = 0; #Thom: variabele waarde
 
 if(isset($_POST['aantal']))
 {
@@ -42,13 +33,25 @@ if(isset($_POST['aantal']))
 
 }
 
+getProductCount();
+include __DIR__ . "/header.php";
+
+?>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Winkelwagen</title>
+</head>
+<body>
+<h1>Inhoud Winkelwagen</h1>
+
+<?php
+
 $cart = getCart();
 $_SESSION['totaalprijs'] = 0;
 
 foreach($cart as $key => $value){
     $totalPrice += round(getStockItem($key, $databaseConnection)['SellPrice'], 2) * $value;
-
-    $_SESSION['aantalProducts'] += $value; #Thom: waarde = aantal VERSCHILLENDE producten in winkelmand
 
     //gegevens van artikel uit database
     $item = getStockItem($key, $databaseConnection);
