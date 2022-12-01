@@ -77,13 +77,9 @@ function voegKlantToe($connection, $naam, $adres, $postcode, $woonplaats, $email
     // geen result, dus bestaat niet
     if(!$bestaat)
     {
-    	print("miauw1");
     	$statement = mysqli_prepare($connection, "INSERT INTO website_customers(name, address, postcode, city, email) VALUES(?,?,?,?,?)");
-    	print("miauw2");
 	    mysqli_stmt_bind_param($statement, 'sssss', $naam, $adres, $postcode, $woonplaats, $email);
-	    print("miauw3");
 	    mysqli_stmt_execute($statement);
-	    print("miauw4");
     } else{
     	// klant bestaat al, hoeft niet toegevoegd te worden.
     }

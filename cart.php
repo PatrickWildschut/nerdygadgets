@@ -46,7 +46,6 @@ include __DIR__ . "/header.php";
 <h1>Inhoud Winkelwagen</h1>
 
 <?php
-
 $cart = getCart();
 $_SESSION['totaalprijs'] = 0;
 
@@ -77,7 +76,7 @@ foreach($cart as $key => $value){
 
         <input type="submit" name="min" value="-" style="height:25px; width:100px;font-size: 15px;">
 
-        <input name="aantal" min="1" type="number"value="<?php print("$value"); ?>"style="height:25px; width:100px;font-size: 15px;">
+        <input name="aantal" min="1" max="<?php print(getProductStock($key)); ?>" type="number"value="<?php print("$value"); ?>"style="height:25px; width:100px;font-size: 15px;">
         <input type="submit" name="max" value="+" style="height:25px; width:100px;font-size: 15px;">
 
 
@@ -135,7 +134,7 @@ if($telOp == 0) {
 </form>
 
 <?php
-
+getProductStock(1);
 
 
 

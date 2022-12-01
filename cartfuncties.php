@@ -1,5 +1,5 @@
 <?php
-
+include "klantfuncties.php";
 if(session_status()<>PHP_SESSION_ACTIVE)   {
     session_start();
 }                         // altijd hiermee starten als je gebruik wilt maken van sessiegegevens
@@ -76,3 +76,14 @@ function getProductCount()
     return $_SESSION['aantalProducts'];
 }
 
+// Patrick
+function getProductStock($stockItemID)
+{   
+    $connection = maakVerbinding();
+
+    $stockitem = getStockItem($stockItemID, $connection);
+
+    sluitVerbinding($connection);
+
+    return intval(trim(explode(":", $stockitem['QuantityOnHand'])[1]));
+}
