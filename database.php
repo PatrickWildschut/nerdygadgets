@@ -96,7 +96,7 @@ function getStockItemImage($id, $databaseConnection) {
     return $R;
 }
 
-// Marijn
+// Marijn en Patrick
 function addToOrder($naam) {
 
     $databaseConnection = connectToDatabase();
@@ -107,7 +107,7 @@ function addToOrder($naam) {
     mysqli_stmt_execute($klantquery);
     $ID = mysqli_stmt_get_result($klantquery);
     if ($ID && mysqli_num_rows($ID)==1) {
-        $ID = intval(mysqli_fetch_all($ID, MYSQLI_ASSOC)[0]);
+        $ID = intval(mysqli_fetch_all($ID, MYSQLI_ASSOC)[0]['ID']);
     }else {
         return;
     }
