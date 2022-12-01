@@ -12,6 +12,7 @@ if (isset($_GET["afrekenen"])) {
     
     $gegevens["email"] = isset($_GET["email"]) ? $_GET["email"] : "";
     $gegevens = klantGegevensToevoegen($gegevens);
+    addToOrder($gegevens["name"]);
     ?>
     <!-- Ideal popup site, kan misschien geblokt worden - Patrick -->
     <script type="text/javascript">

@@ -95,3 +95,43 @@ function getStockItemImage($id, $databaseConnection) {
 
     return $R;
 }
+
+// Marijn
+function addToOrder($naam) {
+
+    $databaseConnection = connectToDatabase();
+
+    // klant id
+    $klantquery = mysqli_prepare($databaseConnection, "SELECT ID FROM website_customers WHERE name=?");
+    mysqli_stmt_bind_param($klantquery, 's', $naam);
+    mysqli_stmt_execute($klantquery);
+    $ID = mysqli_stmt_get_result($klantquery);
+    if ($ID && mysqli_num_rows($ID)==1) {
+        $ID = intval(mysqli_fetch_all($ID, MYSQLI_ASSOC)[0]);
+    }else {
+        return;
+    }
+
+    foreach ($_SESSION['cart'] as $key => $value)
+    {
+        // order
+        $orderquery = mysqli_prepare($databaseConnection, "INSERT INTO website_orders(klantID) VALUES (?)");
+        mysqli_stmt_bind_param($orderquery, 'i', $ID);
+        mysqli_stmt_execute($orderquery);
+
+        $orderID = mysqli_stmt_insert_id($orderquery);
+        // orderline
+        $item = getStockItem($key, $databaseConnection);
+
+        $productID = $item['StockItemID'];
+        $prijs = $item['SellPrice'];
+
+        $statement = mysqli_prepare($databaseConnection,"INSERT INTO website_orderlines(orderID, productID, prijs, aantal) VALUES (?,?,?,?)");
+        mysqli_stmt_bind_param($statement, 'iiii', $orderID,$productID, $prijs, $value);
+        mysqli_stmt_execute($statement);
+    }
+
+    mysqli_close($databaseConnection);
+
+    return true;
+}

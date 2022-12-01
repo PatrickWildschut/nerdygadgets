@@ -134,7 +134,7 @@ if($telOp == 0) {
 </form>
 
 <?php
-getProductStock(1);
+
 
 
 
