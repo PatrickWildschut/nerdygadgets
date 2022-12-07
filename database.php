@@ -120,6 +120,7 @@ function addToOrder($naam) {
         mysqli_stmt_execute($orderquery);
 
         $orderID = mysqli_stmt_insert_id($orderquery);
+
         // orderline
         $item = getStockItem($key, $databaseConnection);
 
@@ -129,9 +130,26 @@ function addToOrder($naam) {
         $statement = mysqli_prepare($databaseConnection,"INSERT INTO website_orderlines(orderID, productID, prijs, aantal) VALUES (?,?,?,?)");
         mysqli_stmt_bind_param($statement, 'iiii', $orderID,$productID, $prijs, $value);
         mysqli_stmt_execute($statement);
+
+        // update product count
+        decreaseProductCount($key, $value);
     }
 
     mysqli_close($databaseConnection);
 
+    return true;
+}
+
+// Patrick
+function decreaseProductCount($id, $count)
+{
+    $databaseConnection = connectToDatabase();
+
+    $query = mysqli_prepare($databaseConnection, "UPDATE stockitemholdings SET QuantityOnHand = QuantityOnHand - ?
+        WHERE StockItemID = ?");
+        mysqli_stmt_bind_param($query, 'ii', $count, $id);
+        mysqli_stmt_execute($query);
+
+    mysqli_close($databaseConnection);
     return true;
 }
