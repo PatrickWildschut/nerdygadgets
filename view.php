@@ -95,6 +95,12 @@ $StockItemImage = getStockItemImage($_GET['id'], $databaseConnection);
                 <?php print $StockItem['StockItemName']; ?>
             </h2>
             <div class="QuantityText"><?php print $StockItem['QuantityOnHand']; ?></div>
+            <div class="ChillerText">
+                <?php 
+                print(getChillerStock($stockItemID));
+                 ?>
+                
+            </div>
             <div id="StockItemHeaderLeft">
                 <div class="CenterPriceLeft">
                     <div class="CenterPriceLeftChild">

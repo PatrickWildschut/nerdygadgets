@@ -169,6 +169,12 @@ ul#ul-class-navigation li {
     float: left;
     margin-right: 10px;
 }
+/* Patrick */
+.ChillerText {
+    position: absolute;
+    left: 310px;
+}
+/**/
 .QuantityText {
     position: absolute;
     left: 310px;

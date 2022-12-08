@@ -153,3 +153,42 @@ function decreaseProductCount($id, $count)
     mysqli_close($databaseConnection);
     return true;
 }
+
+// Patrick
+function getChillerStock($id)
+{
+    $databaseConnection = connectToDatabase();
+
+    // Is chiller stock?
+    $query = mysqli_prepare($databaseConnection, "SELECT IsChillerStock FROM stockitems 
+        WHERE StockItemID = ?");
+        mysqli_stmt_bind_param($query, 'i', $id);
+        mysqli_stmt_execute($query);
+
+    $result = mysqli_stmt_get_result($query);
+    $result = mysqli_fetch_all($result, MYSQLI_ASSOC)[0];
+
+    if($result['IsChillerStock'] == 1)
+    {
+        // Chiller stock
+        // Get cold room temperature
+        mysqli_close($databaseConnection);
+        $databaseConnection = connectToDatabase();
+
+        $query = mysqli_prepare($databaseConnection, "SELECT Temperature FROM coldroomtemperatures 
+        WHERE ColdRoomSensorNumber = 1");
+
+        mysqli_stmt_execute($query);
+        $result = mysqli_stmt_get_result($query);
+        $result = mysqli_fetch_all($result, MYSQLI_ASSOC)[0];
+
+        mysqli_close($databaseConnection);
+
+        return "Gekoelde Temperatuur: " . strval($result['Temperature']);
+
+    } else{
+        return "";
+    }
+
+     
+}
