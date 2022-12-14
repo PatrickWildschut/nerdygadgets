@@ -43,33 +43,42 @@ include __DIR__ . "/header.php";
     <title>Winkelwagen</title>
 </head>
 <body>
-<h1>Inhoud Winkelwagen</h1>
+<h1 class="center">Inhoud Winkelwagen</h1>
 
 <?php
 $cart = getCart();
 $_SESSION['totaalprijs'] = 0;
 
 foreach($cart as $key => $value){
+
+    ?>
+    <div class="winkelmandArtikel">
+    <?php
+
     $totalPrice += round(getStockItem($key, $databaseConnection)['SellPrice'], 2) * $value;
 
     //gegevens van artikel uit database
+    $image = getStockItemImage($key, $databaseConnection);
+
+    if($image==true){
+        ?>
+        <img class="winkelmandFoto" src="Public/StockItemIMG/<?php print(getStockItemImage($key, $databaseConnection)[0]['ImagePath']); ?> " width="250" height="225"> <br>
+        <?php
+    }else{
+        ?>
+        <img class="winkelmandFoto" src="Public/StockGroupIMG/<?php print_r(getStockItem($key, $databaseConnection)['BackupImagePath']); ?> " width="250" height="225"> <br>
+        <?php
+    }
+
     $item = getStockItem($key, $databaseConnection);
     $naam= $item['StockItemName'];
     $prijs = number_format($item['SellPrice'], 2);
     $_SESSION['totaalprijs'] += $prijs * $value;
-    $image = getStockItemImage($key, $databaseConnection);
+    
 
-    print("Naam: $naam<br>");
+    print("<p class='StockItemName'>$naam</p><br>");
 
-    if($image==true){
-        ?>
-        <img src="Public/StockItemIMG/<?php print(getStockItemImage($key, $databaseConnection)[0]['ImagePath']); ?> " width="250" height="250"> <br>
-        <?php
-    }else{
-        ?>
-        <img src="Public/StockGroupIMG/<?php print_r(getStockItem($key, $databaseConnection)['BackupImagePath']); ?> " width="250" height="250"> <br>
-        <?php
-    }
+    
 
     ?>
     <form method="post">
@@ -82,7 +91,7 @@ foreach($cart as $key => $value){
 
 
 <?php
-    print("<br>Prijs (incl. 21% btw):€ ".$prijs * $value."<br>");
+    print("<br>Prijs (incl. 21% btw):€ ".number_format($prijs * $value, 2)."<br>");
 
     ?>
     <p><a href='view.php?id=<?php print($key); ?>'>Naar Artikelpagina</a></p>
@@ -91,6 +100,8 @@ foreach($cart as $key => $value){
     <input type="text" name="artikel" value="<?php print($key); ?>" hidden>
 
     </form>
+
+    </div>
     <?php
     print("<br>");
 
@@ -115,29 +126,19 @@ if($telOp == 0) {
 } else{
     $btw = 0.21 * $_SESSION['totaalprijs'];
     $btw = number_format($btw,2);
-    print("BTW: € $btw");
 
-    print("<br>Totaal prijs: € ".$_SESSION['totaalprijs']."<br>");
     ?>
-        <br>
-    <form action="buy.php">
-        <input type="submit" name="" value="Afrekenen" style="height:25px; width:200px;font-size: 15px;">
+    <p class="winkelmandPrijzen"> BTW: <?php print($btw); ?></p>
+    
+    <p class="winkelmandPrijzen">Totaal prijs: € <?php print(number_format($_SESSION['totaalprijs'], 2)); ?></p>
+     <br>
+    <form action="buy.php"  class="winkelmandAfrekenen">
+        <input type="submit" name="" value="Afrekenen" style="font-weight: bold;">
     </form> 
 <br>
     <br>
     <?php
 }
-
-?>
-<form action="bekijkenoverzicht.php">
-        <input type="submit" name="" value="Bekijk Klanten">
-</form>
-
-<?php
-
-
-
-
 
 include __DIR__ . "/footer.php";
 

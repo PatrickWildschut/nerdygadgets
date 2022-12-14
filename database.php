@@ -184,7 +184,7 @@ function getChillerStock($id)
 
         mysqli_close($databaseConnection);
 
-        return "Gekoelde Temperatuur: " . strval($result['Temperature']);
+        return "Gekoelde Temperatuur: " . strval($result['Temperature'] . "°C");
 
     } else{
         return "";

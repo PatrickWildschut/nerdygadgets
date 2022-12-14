@@ -59,7 +59,7 @@ if (isset($_GET["afrekenen"])) {
 		$btw = number_format($btw,2);
 		print("BTW: € $btw");
 
-		print("<br>Totaal prijs: € ".$_SESSION['totaalprijs']."<br>");
+		print("<br>Totaal prijs: € ".number_format($_SESSION['totaalprijs'], 2)."<br>");
 	    
 		?>
 
