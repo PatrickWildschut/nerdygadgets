@@ -56,13 +56,13 @@ if (isset($_GET["afrekenen"])) {
 	  		<option value="knab">Knab</option>
 		</select>
 		</div>
-
     <!-- Marijn start -->
 
     <div class="kortingscode">
         <h1 class="titels">Kortingscode</h1>
         <input class="text" type="text" name="kortingscode" value="<?php if(empty($_GET['kortingscode'])){print(""); }else{print($_GET['kortingscode']);} ?>">
         <input class="Toevoegen" type="submit" name="Toevoegen" value="Toevoegen">
+        <a href="wheel.html">Spin het wiel voor korting!</a>
         <?php
 
 
