@@ -172,9 +172,8 @@ if (isset($_GET["beoordelingVerzend"])) {
     voegProductBeoordeling(1, $_GET["rate"], $StockItem["StockItemID"], $beoordeling['Beoordeling']);
 }
 ?>
-
 <form>
-    <div class="ProductReview">
+    <div class="centertwo">
         <h1>Deel jou ervaring</h1></br>
         <h2>Beoordeling</h2>
         <div class="star"></div>
