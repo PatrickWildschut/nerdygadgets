@@ -13,6 +13,9 @@ if (isset($_GET["afrekenen"])) {
     $gegevens["email"] = isset($_GET["email"]) ? $_GET["email"] : "";
     $gegevens = klantGegevensToevoegen($gegevens);
     addToOrder($gegevens["name"]);
+
+    // clear winkelmand
+    $_SESSION['cart'] = [];
     ?>
     <!-- Ideal popup site, kan misschien geblokt worden - Patrick -->
     <script type="text/javascript">

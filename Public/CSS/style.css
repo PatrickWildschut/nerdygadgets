@@ -487,6 +487,7 @@ ul#ul-class-price li {
 }
 
 .indicatie { /* Thom: div van indicatie winkelmand */
+    position: relative;
     background-color: red;
     width: 20px;
     height: 20px;
