@@ -1,0 +1,17 @@
+#ten-countdown {
+    float: center;
+    margin-left: 380px;
+    margin-bottom: 20px;
+    margin-top: -2px;
+    border: 2px solid #2DB0D4;
+    display: inline-table;
+    padding: 25px;
+    color: #FFFFFF;
+    font-family: pt-sans, sans-serif;
+    font-size: 25px;
+    font-weight: bold;
+    text-decoration: none;
+
+
+
+}

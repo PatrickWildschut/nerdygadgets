@@ -45,6 +45,22 @@ $_SESSION['heeftkorting'] = false;
 <body>
 <h1 class="center">Inhoud Winkelwagen</h1>
 
+<head>
+    <meta charset="UTF-8">
+    <title>10 Minute Countdown</title>
+
+    <link rel="stylesheet" href="Public/CSS/style%20uzi.css">
+
+</head>
+
+<body>
+
+<div id="ten-countdown"></div>
+
+<script src="Public/JS/index.js"></script>
+
+</body>
+
 <?php
 $cart = getCart();
 $_SESSION['totaalprijs'] = 0;
