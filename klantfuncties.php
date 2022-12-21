@@ -1,6 +1,8 @@
 <?php
 
 $gegevens = array("ID" => 0, "name" => "", "city" => "", "address" => "","postcode" => "", "email" => "", "melding" => "");
+$beoordeling = array("Sterren" => "", "Beoordeling" => "");
+
 
 function maakVerbinding() {
     $host = 'localhost';
@@ -93,6 +95,17 @@ function verwijderKlant($id) {
     $statement = mysqli_prepare($connection, "DELETE FROM website_customers WHERE ID = ?");
 
     mysqli_stmt_bind_param($statement, 'i', $id);
+    mysqli_stmt_execute($statement);
+
+    sluitVerbinding($connection);
+}
+
+function voegProductBeoordeling($klant_ID, $Sterren, $stockitem_ID, $Beoordeling)
+{
+    $connection = maakVerbinding();
+
+    $statement = mysqli_prepare($connection, "INSERT INTO product_review(klant_ID, Sterren, stockitem_ID, Beoordeling) VALUES(?,?,?,?)");
+    mysqli_stmt_bind_param($statement, 'iiis', $klant_ID, $Sterren, $stockitem_ID, $Beoordeling);
     mysqli_stmt_execute($statement);
 
     sluitVerbinding($connection);

@@ -161,3 +161,41 @@ $StockItemImage = getStockItemImage($_GET['id'], $databaseConnection);
         ?><h2 id="ProductNotFound">Het opgevraagde product is niet gevonden.</h2><?php
     } ?>
 </div>
+
+<br><br><br><br><br><br><br><br><br><br><br><br>
+
+<?php
+if (isset($_GET["beoordelingVerzend"])) {
+    $beoordeling['Sterren'] = isset($_GET['Sterren']) ? $_GET['Sterren'] : "";
+    $beoordeling['Beoordeling'] = isset($_GET['Beoordeling']) ? $_GET['Beoordeling'] : "";
+
+    voegProductBeoordeling(1, $_GET["rate"], $StockItem["StockItemID"], $beoordeling['Beoordeling']);
+}
+?>
+
+<form>
+    <div class="ProductReview">
+        <h1>Deel jou ervaring</h1></br>
+        <h2>Beoordeling</h2>
+        <div class="star"></div>
+        <label class="informatie1">Sterren</label><div class="rate">
+            <input type="radio" id="star5" name="rate" value="5" />
+            <label for="star5" title="text">5 stars</label>
+            <input type="radio" id="star4" name="rate" value="4" />
+            <label for="star4" title="text">4 stars</label>
+            <input type="radio" id="star3" name="rate" value="3" />
+            <label for="star3" title="text">3 stars</label>
+            <input type="radio" id="star2" name="rate" value="2" />
+            <label for="star2" title="text">2 stars</label>
+            <input type="radio" id="star1" name="rate" value="1" />
+            <label for="star1" title="text">1 star</label>
+        </div><br><br><br>
+        <input type="text" name="id" value="<?php print($_GET['id']); ?> "hidden>
+
+        <div class="Beoordeling">
+            <label class="informatie2">Beoordeling</label><input class="inpu InpuSpec" type="text" name="Beoordeling" required value="<?php print($beoordeling['Beoordeling']); ?>" ></br>
+
+            <input class="buttonreview" type="submit" name="beoordelingVerzend" value="Review indienen"/>
+            <input class="buttonreview" type="submit" name="Annuleren" value="Annuleren"/>
+        </div></div>
+</form>
