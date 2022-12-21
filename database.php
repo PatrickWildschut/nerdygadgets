@@ -192,3 +192,43 @@ function getChillerStock($id)
 
      
 }
+
+//Marijn
+function NewDiscount($naam,$discountpercentage)
+{
+    $databaseConnection = connectToDatabase();
+
+
+    $query = mysqli_prepare($databaseConnection, "INSERT INTO specialdeals(SpecialDealID, DealDescription, DiscountPercentage) VALUES(?,?,?)");
+    mysqli_stmt_bind_param($query, 'isi', $id,$naam,$discountpercentage);
+    mysqli_stmt_execute($query);
+
+    mysqli_close($databaseConnection);
+    return true;
+}
+
+//Marijn
+function ControlerenKorting($naam){
+    $databaseconnection = connectToDatabase();
+
+    $query = mysqli_prepare($databaseconnection, "select * from specialdeals where DealDescription = ?");
+    mysqli_stmt_bind_param($query, 's', $naam);
+    mysqli_stmt_execute($query);
+    $result = mysqli_stmt_get_result($query);
+
+    return mysqli_num_rows($result) > 0;
+}
+
+//Marijn
+function Ophalenkorting($naam)
+{
+    $databaseconnection = connectToDatabase();
+
+    $query = mysqli_prepare($databaseconnection, "select DiscountPercentage from specialdeals where DealDescription = ?");
+    mysqli_stmt_bind_param($query, 's', $naam);
+    mysqli_stmt_execute($query);
+    $korting = mysqli_stmt_get_result($query);
+    $korting = mysqli_fetch_all($korting);
+
+    return intval($korting[0][0]);
+}

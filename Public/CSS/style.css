@@ -565,7 +565,7 @@ ul#ul-class-price li {
     margin: 10px;
     border: 1px solid #2DB0D4;
     padding: 10px;
-    margin-top: -144px;
+    margin-top: 10px;
 }
 
 .titels {
@@ -616,4 +616,13 @@ ul#ul-class-price li {
     height:25px; 
     width:200px;
     font-size: 15px;
+}
+
+.kortingscode {
+    float: right;
+    width: 26%;
+    margin: 10px;
+    border: 1px solid #2DB0D4;
+    padding: 10px;
+    margin-top: -144px;
 }

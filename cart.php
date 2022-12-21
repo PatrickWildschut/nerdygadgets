@@ -35,7 +35,7 @@ if(isset($_POST['aantal']))
 
 getProductCount();
 include __DIR__ . "/header.php";
-
+$_SESSION['heeftkorting'] = false;
 ?>
 
 <head>

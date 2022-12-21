@@ -3,14 +3,16 @@ include __DIR__ . "/header.php";
 
 include 'klantfuncties.php';
 // Patrick
-if (isset($_GET["afrekenen"])) {
+if (isset($_GET["afrekenen"]) || isset($_GET["Toevoegen"])) {
     $gegevens["name"] = isset($_GET["name"]) ? $_GET["name"] : "";
     $gegevens["address"] = isset($_GET["address"]) ? $_GET["address"] : "";
     $gegevens["postcode"] = isset($_GET["postcode"]) ? $_GET["postcode"] : "";
     $gegevens["city"] = isset($_GET["city"]) ? $_GET["city"] : "";
-    
-    
     $gegevens["email"] = isset($_GET["email"]) ? $_GET["email"] : "";
+
+    }
+
+if (isset($_GET["afrekenen"])) {
     $gegevens = klantGegevensToevoegen($gegevens);
     addToOrder($gegevens["name"]);
 
@@ -54,6 +56,40 @@ if (isset($_GET["afrekenen"])) {
 	  		<option value="knab">Knab</option>
 		</select>
 		</div>
+
+    <!-- Marijn start -->
+
+    <div class="kortingscode">
+        <h1 class="titels">Kortingscode</h1>
+        <input class="text" type="text" name="kortingscode" value="<?php if(empty($_GET['kortingscode'])){print(""); }else{print($_GET['kortingscode']);} ?>">
+        <input class="Toevoegen" type="submit" name="Toevoegen" value="Toevoegen">
+        <?php
+
+
+        if(!empty($_GET['kortingscode'])){
+
+            $naam = $_GET['kortingscode'];
+
+            if($_SESSION['heeftkorting'] == false)
+            {
+                if (ControlerenKorting($naam) == true) {
+                    $korting = Ophalenkorting($naam);
+
+                    $_SESSION['totaalprijs'] = $_SESSION['totaalprijs'] - (($_SESSION['totaalprijs'] / 100) * $korting);
+                    $_SESSION['heeftkorting'] = true;
+                    print("Kortingscode: '$naam' toegepast!");
+                }else {
+                    print("Ongeldige kortingscode!");
+                }
+            } else{
+                print("Er is al een kortingscode in gebruik!");
+            }
+
+
+        }
+        ?>
+    </div>
+    <!-- Marijn end -->
 
     <div class="afrekenen">
     <h1 class="titels">Bevestigen</h1>
