@@ -42,7 +42,10 @@ if (count($cart) != 0) {
     ?>
     <div id="ten-countdown"></div>
     <script src="Public/JS/index.js"></script>
-    <?php   
+    <script>
+        countdown("ten-countdown", 10, 0);
+    </script>
+    <?php
 }
 $_SESSION['totaalprijs'] = 0;
 
@@ -132,7 +135,8 @@ if ($telOp == 0) {
 
     <p class="winkelmandPrijzen">Totaal prijs: € <?php print(number_format($_SESSION['totaalprijs'], 2)); ?></p>
     <br>
-    <form action="buy.php" class="winkelmandAfrekenen">
+    <form method="post" action="buy.php" class="winkelmandAfrekenen">
+        <input id="test" type="number" name="testtest" value="1" hidden>
         <input type="submit" name="" value="Afrekenen" style="font-weight: bold;">
     </form>
     <br>

@@ -13,6 +13,9 @@ function countdown( elementName, minutes, seconds )
         msLeft = endTime - (+new Date);
         if ( msLeft < 1000 ) {
             element.innerHTML = "Uw reservering is voorbij!";
+            test = document.getElementById('test');
+            test.value = 0;
+
         } else {
             time = new Date( msLeft );
             hours = time.getUTCHours();
@@ -27,5 +30,3 @@ function countdown( elementName, minutes, seconds )
     endTime = (+new Date) + 1000 * (60*minutes + seconds) + 500;
     updateTimer();
 }
-
-countdown("ten-countdown", 10, 0);

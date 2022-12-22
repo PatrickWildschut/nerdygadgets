@@ -1,7 +1,16 @@
 <?php
 include __DIR__ . "/header.php";
 
+//uzeyir
 include 'klantfuncties.php';
+if (isset($_POST["testtest"])){
+   if($_POST["testtest"]==0){
+       print('<meta http-equiv="refresh" content="0;url=blabla.php" />');
+       $_SESSION['cart'] = [];
+   }
+}else{
+    print('');
+}
 // Patrick
 if (isset($_GET["afrekenen"]) || isset($_GET["Toevoegen"])) {
     $gegevens["name"] = isset($_GET["name"]) ? $_GET["name"] : "";
