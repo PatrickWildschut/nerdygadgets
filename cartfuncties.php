@@ -1,5 +1,5 @@
 <?php
-include "klantfuncties.php";
+
 if(session_status()<>PHP_SESSION_ACTIVE)   {
     session_start();
 }                         // altijd hiermee starten als je gebruik wilt maken van sessiegegevens

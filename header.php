@@ -1,11 +1,21 @@
 <!-- de inhoud van dit bestand wordt bovenaan elke pagina geplaatst -->
 <?php
-if(session_status()<>PHP_SESSION_ACTIVE)   {
+if(session_status() != PHP_SESSION_ACTIVE){
     session_start();
-} 
+
+}
 include "database.php";
+include __DIR__ . "/klantfuncties.php";
+
 $databaseConnection = connectToDatabase();
+
+if(!isset($_SESSION['ingelogd'])){
+    $_SESSION['ingelogd'] = false;
+}
+print_r($_SESSION);
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -71,6 +81,25 @@ $databaseConnection = connectToDatabase();
             ?>
 
         <ul id="ul-class-navigation">
+            <li class="Accounticon">
+
+
+                <!--                --><?php
+                // Gemaakt door can: als je bent ingelogd krijg je een ander icoon te zien
+                if($_SESSION['ingelogd'] == true){
+                    echo '<a href="uitloggen.php"> <img src="Public/Img/ingelogd2.0.png"  width="40px" height="40px">';
+
+                } else {
+
+                    echo '<a href="inloggen.php"> <img src="Public/Img/Accounticon2.0.png" width="45px" height="45px">
+                </a>';
+
+                }
+
+
+
+                ?>
+
 
             <li class="winkelmand">
                 <a href="cart.php" >

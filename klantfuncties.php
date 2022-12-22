@@ -1,6 +1,5 @@
 <?php
-
-$gegevens = array("ID" => 0, "name" => "", "city" => "", "address" => "","postcode" => "", "email" => "", "melding" => "");
+$gegevens = array("ID" => 0, "name" => "", "city" => "", "address" => "","postcode" => "", "email" => "", "melding" => "","password"=>"");
 $beoordeling = array("Sterren" => "", "Beoordeling" => "");
 
 
@@ -27,7 +26,7 @@ function alleKlantenOpvragen() {
 }
 
 function selecteerKlanten($connection) {
-    $sql = "SELECT ID, name, city FROM website_customers ORDER BY ID";
+    $sql = "SELECT ID, name, email FROM website_customers ORDER BY ID";
     $result = mysqli_fetch_all(mysqli_query($connection, $sql),MYSQLI_ASSOC);
     return $result;
 }
@@ -55,26 +54,24 @@ function toonKlantenOpHetScherm($klanten) {
 function klantGegevensToevoegen($gegevens) {
 
 	$connection = maakVerbinding();
-	if (voegKlantToe($connection, $gegevens['name'], $gegevens["address"], $gegevens["postcode"], $gegevens["city"], $gegevens["email"]) == True) {
-		$gegevens["melding"] = "De klant is toegevoegd";
-        } else {
+    if (voegKlantToe($connection, $gegevens['name'], $gegevens["address"], $gegevens["postcode"], $gegevens["city"], $gegevens["email"],
+            $gegevens["password"]) == True) {
+        $gegevens["melding"] = "De klant is toegevoegd";
+
+    } else {
 	 	$gegevens["melding"] = "Het toevoegen is mislukt";
         }
 	sluitVerbinding($connection);
 	return $gegevens;
 }
 
-function voegKlantToe($connection, $naam, $adres, $postcode, $woonplaats, $email) {
-
+function voegKlantToe($connection, $naam, $adres, $postcode, $woonplaats, $email, $password=null) {
 	$result = selecteerKlanten($connection);
 	$bestaat = false;
 	foreach ($result as $key => $value) {
-		if($value['name'] == $naam)
-		{
-			$bestaat = true;
-			break;
-		}
-	}
+
+    }
+
 
     // geen result, dus bestaat niet
     if(!$bestaat)
@@ -110,5 +107,44 @@ function voegProductBeoordeling($klant_ID, $Sterren, $stockitem_ID, $Beoordeling
 
     sluitVerbinding($connection);
 }
+function HaalKlantUitDatabase($ID) {
+    $connection = maakVerbinding();
+    $statement = mysqli_prepare($connection, "SELECT * FROM website_customers WHERE ID=? ");
+
+    mysqli_stmt_bind_param($statement, "i", $ID);
+    mysqli_stmt_execute($statement);
+
+    $antwoord = mysqli_stmt_get_result($statement);
+    $antwoord = mysqli_fetch_all($antwoord, MYSQLI_ASSOC);
+
+    sluitVerbinding($connection);
+    return $antwoord;
+}
+
+function InloggenGegevens($email, $password) {
+    $connection = maakVerbinding();
+
+    $statement = mysqli_prepare($connection, "SELECT ID, password FROM website_customers WHERE email=? ");
+
+    mysqli_stmt_bind_param($statement, "s", $email);
+    mysqli_stmt_execute($statement);
+
+    $result = mysqli_stmt_get_result($statement);
+    $result = mysqli_fetch_all($result, MYSQLI_ASSOC)[0];
+
+    sluitVerbinding($connection);
+
+
+    if(password_verify($password,$result['password'])) {
+        print("Je bent ingelogd");
+        return $result['ID'];
+    } else {
+        print("onjuist wachtwoord of onjuiste emailadres.");
+        return false;
+    }
+}
+
+
+
 
 ?>
