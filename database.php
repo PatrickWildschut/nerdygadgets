@@ -125,11 +125,11 @@ function addToOrder($naam) {
         $item = getStockItem($key, $databaseConnection);
 
         $productID = $item['StockItemID'];
-        $prijs = $item['SellPrice'];
+        $prijs = $_SESSION['totaalprijs'];
         $tijd = date("Y-m-d") . " " . date("h:i:s");
 
         $statement = mysqli_prepare($databaseConnection,"INSERT INTO website_orderlines(orderID, productID, prijs, aantal, datetime) VALUES (?,?,?,?,?)");
-        mysqli_stmt_bind_param($statement, 'iiiis', $orderID,$productID, $prijs, $value, $tijd);
+        mysqli_stmt_bind_param($statement, 'iidis', $orderID,$productID, $prijs, $value, $tijd);
         mysqli_stmt_execute($statement);
 
         // update product count
