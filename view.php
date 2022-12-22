@@ -192,7 +192,7 @@ if (isset($_GET["beoordelingVerzend"])) {
         <input type="text" name="id" value="<?php print($_GET['id']); ?> "hidden>
 
         <div class="Beoordeling">
-            <label class="informatie2">Beoordeling</label><input class="inpu InpuSpec" type="text" name="Beoordeling" required value="<?php print($beoordeling['Beoordeling']); ?>" ></br>
+            <label class="informatie2">Beoordeling</label><input maxlength="200" class="inpu InpuSpec" type="text" name="Beoordeling" required value="<?php print($beoordeling['Beoordeling']); ?>" ></br>
 
             <input class="buttonreview" type="submit" name="beoordelingVerzend" value="Review indienen"/>
             <input class="buttonreview" type="submit" name="Annuleren" value="Annuleren"/>
