@@ -52,7 +52,7 @@ function removeProductFromCart($stockItemID){
 
     saveCart($cart);                            
 }
-// Uzejir
+// Uzeyir
 function updateProductFromCart($stockItemID,$aantal){
     $cart = getCart();
     if(array_key_exists($stockItemID,$cart)) {
