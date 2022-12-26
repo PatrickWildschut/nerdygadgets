@@ -160,9 +160,19 @@ $StockItemImage = getStockItemImage($_GET['id'], $databaseConnection);
     } else {
         ?><h2 id="ProductNotFound">Het opgevraagde product is niet gevonden.</h2><?php
     } ?>
-</div>
+</div><br><br><br><br><br><br><br><br><br><br><br><br>
 
-<br><br><br><br><br><br><br><br><br><br><br><br>
+<div class="gegevensreview">
+    <p class="gemiddeld">Gemiddeld cijfer: 0★</p>
+    <p class="gemiddeld">Totaal aantal reviews: 0</p>
+    <p class="reviewstars">5★ (0%) (0)</p>
+    <p class="reviewstars">4★ (0%) (0)</p>
+    <p class="reviewstars">3★ (0%) (0)</p>
+    <p class="reviewstars">2★ (0%) (0)</p>
+    <p class="reviewstars">1★ (0%) (0)</p>
+    <p>!TIJDELIJK! stockitem_ID: <?php print($StockItem["StockItemID"]) ?> </p>
+</div>
+<br>
 
 <?php
 if (isset($_GET["beoordelingVerzend"])) {
