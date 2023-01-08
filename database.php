@@ -6,7 +6,7 @@ function connectToDatabase() {
 
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); // Set MySQLi to throw exceptions
     try {
-        $Connection = mysqli_connect("localhost", "root", "", "nerdygadgets");
+        $Connection = mysqli_connect("localhost", "Bezoeker", "DikkeBezoeker", "nerdygadgets");
         mysqli_set_charset($Connection, 'latin1');
         $DatabaseAvailable = true;
     } catch (mysqli_sql_exception $e) {
@@ -232,4 +232,15 @@ function Ophalenkorting($naam)
     $korting = mysqli_fetch_all($korting);
 
     return intval($korting[0][0]);
+}
+
+//Marijn
+function VerwijderenKorting($code){
+    $databaseconnection = connectToDatabase();
+
+    $query = mysqli_prepare($databaseconnection, "DELETE FROM specialdeals where DealDescription = ?");
+    mysqli_stmt_bind_param($query, 's', $code);
+    mysqli_stmt_execute($query);
+
+    return $code;
 }
