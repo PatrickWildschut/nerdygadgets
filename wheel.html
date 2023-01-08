@@ -8,18 +8,32 @@
     <title>Spin Wheel</title>
 </head>
 <body>
-<button id="spin">Spin</button>
+<button id="spin">TOP 8</button>
 <span class="arrow"></span>
 <div class="container">
-    <div class="one">1%</div>
-    <div class="two">2%</div>
-    <div class="three">3%</div>
-    <div class="four">4%</div>
-    <div class="five">5%</div>
-    <div class="six">6%</div>
-    <div class="seven">7%</div>
-    <div class="eight">8%</div>
+    <a href="http://localhost/nerdygadgets/view.php?id=75" target="_parent"><div class="one">TRUCK</div></a>
+    <a href="http://localhost/nerdygadgets/view.php?id=73" target="_parent"><div class="two">COUPE</div></a>
+    <a href="http://localhost/nerdygadgets/view.php?id=8"  target="_parent"><div class="three">USB</div></a>
+    <a href="http://localhost/nerdygadgets/view.php?id=15" target="_parent"><div class="four">FLASH</div></a>
+    <a href="http://localhost/nerdygadgets/view.php?id=67" target="_parent"><div class="five">SEDAN</div></a>
+    <a href="http://localhost/nerdygadgets/view.php?id=144" target="_parent"><div class="six">MASK</div></a>
+    <a href="http://localhost/nerdygadgets/view.php?id=19" target="_parent"><div class="seven">MUG</div></a>
+    <a href="http://localhost/nerdygadgets/view.php?id=221" target="_parent"><div class="eight">CHOCO</div></a>
+
 </div>
+<style>
+    .test{
+        position: absolute;
+        bottom:0;
+        left:50%;
+        transform: translateX(-50%);
+        color:#fff;
+        background:white;
+        color: black;
+        padding: 20px;
+    }
+</style>
+<a href="#" class="test" style=";">MEEST VERKOCHTE PRODUCTEN</a>
 </body>
 <script>
     let container = document.querySelector(".container");

@@ -71,7 +71,7 @@ if (isset($_GET["afrekenen"])) {
         <h1 class="titels">Kortingscode</h1>
         <input class="text" type="text" name="kortingscode" value="<?php if(empty($_GET['kortingscode'])){print(""); }else{print($_GET['kortingscode']);} ?>">
         <input class="Toevoegen" type="submit" name="Toevoegen" value="Toevoegen">
-        <a href="wheel.html">Spin het wiel voor korting!</a>
+        <a href="wheel.html">Bekijk hier de meest verkochte 8 producten!</a>
         <?php
 
 
